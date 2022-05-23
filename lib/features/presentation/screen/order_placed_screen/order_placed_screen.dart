@@ -1,8 +1,23 @@
+import 'package:agro_mart/features/data/remote_order_data_function.dart';
+import 'package:agro_mart/features/domain/entities/order_entity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class OrderPlacedScreen extends StatefulWidget {
-  const OrderPlacedScreen({Key? key}) : super(key: key);
+  const OrderPlacedScreen(
+      {Key? key,
+      required this.productName,
+      required this.productPrice,
+      required this.productQuantity,
+      required this.productImageNumber,
+      required this.userId})
+      : super(key: key);
+
+  final String productName;
+  final String productPrice;
+  final String productQuantity;
+  final String productImageNumber;
+  final String userId;
 
   @override
   State<OrderPlacedScreen> createState() => _OrderPlacedScreenState();
@@ -14,22 +29,38 @@ class _OrderPlacedScreenState extends State<OrderPlacedScreen> {
   void _onLoading() {
     setState(() {
       _loading = true;
-      Future.delayed(const Duration(seconds: 4), _stopIndicator);
     });
   }
 
   Future _stopIndicator() async {
     setState(() {
       _loading = false;
-      Future.delayed(const Duration(seconds: 2), goBack);
     });
   }
 
   @override
-  void initState() {
+  void initState(){
     _onLoading();
+    _isOrderPlace();
     super.initState();
   }
+
+  Future<void> _isOrderPlace()async{
+    OrderEntity order = OrderEntity(
+      productName: widget.productName,
+      productPrice: widget.productPrice,
+      productQuantity: widget.productQuantity,
+      productImageNumber: widget.productImageNumber,
+      userId: widget.userId,
+    );
+
+    bool orderConform = await orderPlaced(order) ;
+
+    if(orderConform){
+      Future.delayed(const Duration(seconds: 2), _stopIndicator);
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +69,13 @@ class _OrderPlacedScreenState extends State<OrderPlacedScreen> {
     );
   }
 
-  goBack(){
+  goBack() {
     int count = 0;
     Navigator.popUntil(context, (route) {
       return count++ == 2;
     });
   }
+
   bodyProgress() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -74,6 +106,7 @@ class _OrderPlacedScreenState extends State<OrderPlacedScreen> {
   }
 
   body() {
+    Future.delayed(const Duration(seconds: 2), goBack);
     return const Center(
       child: Text(
         "Thank Your order Is placed",

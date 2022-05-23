@@ -2,6 +2,7 @@ import 'package:agro_mart/features/presentation/screen/Signup/components/body.da
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

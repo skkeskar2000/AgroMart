@@ -3,125 +3,28 @@ import 'package:agro_mart/features/presentation/screen/order_screen/order_screen
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:like_button/like_button.dart';
-import '../widgets/nav_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
-  static const String id = 'homeScreen';
-  final String name;
-  const HomeScreen({Key? key, required this.name}) : super(key: key);
+  const HomeScreen({Key? key, required this.userId}) : super(key: key);
+  final String userId;
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late String userId = widget.userId;
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        resizeToAvoidBottomInset: false,
-        drawer: NavDrawer(name: widget.name,),
-        appBar: AppBar(
-          backgroundColor: Colors.teal,
-          title: const Center(
-            child: Text(
-              'AgroMart',
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          actions: [
-            IconButton(
-              onPressed: () {
-                // Navigator.push(context, new MaterialPageRoute(builder: (context) => CartScreen()));
-              },
-              icon: Stack(
-                children: [
-                  const FaIcon(
-                    FontAwesomeIcons.shoppingCart,
-                    color: Colors.black,
-                  ),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Container(
-                      height: 15.0,
-                      width: 15.0,
-                      decoration: const BoxDecoration(
-                        color: Colors.red,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Center(
-                          child: Text(
-                            '3',
-                            style: TextStyle(fontSize: 10.0),
-                          )),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-        body:   const HomePageBody(),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          tooltip: 'Increment',
-          elevation: 2.0,
-          backgroundColor: Colors.teal,
-          child: const FaIcon(
-            FontAwesomeIcons.arrowUp,
-          ),
-        ),
-        bottomNavigationBar: BottomAppBar(
-          shape: const CircularNotchedRectangle(),
-          color: Colors.teal,
-          notchMargin: 10,
-          child: Container(
-            // color: Colors.teal,
-            padding: const EdgeInsets.all(20.0),
-            height: 60,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Icon(
-                  Icons.home,
-                  color: Colors.white,
-                ),
-                Icon(
-                  Icons.dashboard,
-                ),
-                Icon(
-                  Icons.shopping_cart,
-                ),
-                Icon(Icons.contact_page),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class HomePageBody extends StatefulWidget {
-  const HomePageBody({Key? key}) : super(key: key);
-
-  @override
-  _HomePageBodyState createState() => _HomePageBodyState();
-}
-
-class _HomePageBodyState extends State<HomePageBody> {
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
+    return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
             margin: const EdgeInsets.all(20.0),
-            padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
+            padding:
+                const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(5.0),
@@ -210,42 +113,48 @@ class _HomePageBodyState extends State<HomePageBody> {
                         children: [
                           Expanded(
                             child: Column(
-                              children: const [
+                              children: [
                                 ProductImage(
                                   name: 'Tomato Seed',
-                                  price: '₹480',
+                                  price: '480',
                                   productImageNumber: 1,
+                                  userId: userId,
                                 ),
                                 ProductImage(
                                   name: 'Sulphur Fertilizer',
-                                  price: '₹250',
+                                  price: '250',
                                   productImageNumber: 2,
+                                  userId: userId,
                                 ),
                                 ProductImage(
                                   name: 'Agri Implement',
-                                  price: '₹2277',
+                                  price: '2277',
                                   productImageNumber: 3,
+                                  userId: userId,
                                 ),
                               ],
                             ),
                           ),
                           Expanded(
                             child: Column(
-                              children: const [
+                              children: [
                                 ProductImage(
                                   name: 'Herbicide',
-                                  price: '₹276',
+                                  price: '276',
                                   productImageNumber: 4,
+                                  userId: userId,
                                 ),
                                 ProductImage(
                                   name: 'N53 Onion Seed',
-                                  price: '₹861',
+                                  price: '861',
                                   productImageNumber: 5,
+                                  userId: userId,
                                 ),
                                 ProductImage(
                                   name: 'Spiced Milk',
-                                  price: '₹58',
+                                  price: '58',
                                   productImageNumber: 6,
+                                  userId: userId,
                                 ),
                               ],
                             ),
@@ -265,11 +174,17 @@ class _HomePageBodyState extends State<HomePageBody> {
 }
 
 class ProductImage extends StatelessWidget {
-  const ProductImage({required this.name, required this.price, required this.productImageNumber});
+  ProductImage({
+    required this.name,
+    required this.price,
+    required this.productImageNumber,
+    required this.userId,
+  });
 
   final String name;
   final String price;
   final int productImageNumber;
+  final String userId;
 
   @override
   Widget build(BuildContext context) {
@@ -280,6 +195,7 @@ class ProductImage extends StatelessWidget {
           imageName: name,
           price: price,
           imageNumber: productImageNumber,
+          userId: userId,
         ),
         Column(
           children: [
@@ -290,7 +206,7 @@ class ProductImage extends StatelessWidget {
                 fontSize: 20,
               ),
             ),
-            Text(price),
+            Text("₹$price"),
           ],
         ),
       ],
@@ -302,7 +218,8 @@ class ReusedCircleAvatar extends StatelessWidget {
   final String recentName;
   final int roundImageNumber;
 
-  ReusedCircleAvatar({required this.recentName, required this.roundImageNumber});
+  ReusedCircleAvatar(
+      {required this.recentName, required this.roundImageNumber});
 
   @override
   Widget build(BuildContext context) {
@@ -346,14 +263,29 @@ class ReusedImageContainer extends StatelessWidget {
   final int imageNumber;
   final String price;
   final String imageName;
+  final String userId;
 
-  const ReusedImageContainer({required this.imageNumber, required this.price, required this.imageName});
+  const ReusedImageContainer(
+      {required this.imageNumber,
+      required this.price,
+      required this.imageName,
+      required this.userId});
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
       onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (_)=>  OrderScreen(imageNumber: imageNumber, price: price, imageName: imageName),),);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => OrderScreen(
+              imageNumber: imageNumber,
+              price: price,
+              imageName: imageName,
+              userId: userId,
+            ),
+          ),
+        );
       },
       child: Container(
         height: 250.0,
@@ -371,12 +303,13 @@ class ReusedImageContainer extends StatelessWidget {
           ],
         ),
         child: Container(
-          margin: const EdgeInsets.only(left: 110.0, right: 15.0, bottom: 160.0),
+          margin:
+              const EdgeInsets.only(left: 110.0, right: 15.0, bottom: 160.0),
           decoration: const BoxDecoration(
             color: Colors.white,
             shape: BoxShape.circle,
           ),
-          child: LikeButton(),
+          child: const LikeButton(),
         ),
       ),
     );

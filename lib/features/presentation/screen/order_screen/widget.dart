@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'order_screen.dart';
 
 class OrderImage extends StatelessWidget {
-  OrderImage({required this.name, required this.price, required this.productImageNumber});
+  OrderImage({required this.name, required this.price, required this.productImageNumber, required this.userId});
 
   final String name;
   final String price;
   final int productImageNumber;
+  final String userId;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class OrderImage extends StatelessWidget {
                 fontSize: 20,
               ),
             ),
-            Text(price),
+            Text("₹$price"),
           ],
         ),
       ],

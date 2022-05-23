@@ -1,3 +1,4 @@
+import 'package:agro_mart/features/presentation/pages/home_page.dart';
 import 'package:agro_mart/features/presentation/screen/Signup/components/social_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -114,7 +115,6 @@ class _BodyState extends State<Body> {
       navigateHomeScreen(user.id!,user.name,user.gmail);
     }
     else{
-      print(user.name);
       Future.delayed(const Duration(seconds: 0),(){
         Fluttertoast.showToast(
             msg: user.name,
@@ -134,7 +134,7 @@ class _BodyState extends State<Body> {
       context,
       MaterialPageRoute(
         builder: (context) {
-          return HomeScreen(name: name,);
+          return HomePage(name: name,userId: id,);
         },
       ),
     );
