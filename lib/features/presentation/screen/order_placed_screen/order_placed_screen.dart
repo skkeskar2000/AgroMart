@@ -14,8 +14,8 @@ class OrderPlacedScreen extends StatefulWidget {
       : super(key: key);
 
   final String productName;
-  final String productPrice;
-  final String productQuantity;
+  final int productPrice;
+  final int productQuantity;
   final String productImageNumber;
   final String userId;
 

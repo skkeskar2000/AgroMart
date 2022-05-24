@@ -10,6 +10,7 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+
   var cartList = [];
   var length = 0;
 
@@ -28,11 +29,36 @@ class _CartPageState extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {
+    double size = MediaQuery.of(context).size.height;
     return cartList.isEmpty
         ? const Center(
             child: Text("You don't anything in cart"),
           )
-        : _buildListView();
+        : Column(
+          children: [
+            _buildListView(),
+            Expanded(child: Container()),
+            Card(
+              elevation: 50,
+              child: Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('Rs 1,54,932'),
+                  ),
+                  Expanded(child: Container()),
+                  const Card(
+                    color: Colors.deepOrangeAccent,
+                    child: Padding(
+                      padding: EdgeInsets.all(15.0),
+                      child: Text("Placed Order",style: TextStyle(color: Colors.white,fontSize: 20),),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
   }
 
   ListView _buildListView() {
@@ -76,7 +102,7 @@ class _CartPageState extends State<CartPage> {
                 const SizedBox(
                   height: 8,
                 ),
-                Text(cartList[index]["productQuantity"]),
+                Text("${cartList[index]["productQuantity"]}"),
               ],
             ),
           ),

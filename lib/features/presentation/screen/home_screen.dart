@@ -116,19 +116,19 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 ProductImage(
                                   name: 'Tomato Seed',
-                                  price: '480',
+                                  price: 480,
                                   productImageNumber: 1,
                                   userId: userId,
                                 ),
                                 ProductImage(
                                   name: 'Sulphur Fertilizer',
-                                  price: '250',
+                                  price: 250,
                                   productImageNumber: 2,
                                   userId: userId,
                                 ),
                                 ProductImage(
                                   name: 'Agri Implement',
-                                  price: '2277',
+                                  price: 2277,
                                   productImageNumber: 3,
                                   userId: userId,
                                 ),
@@ -140,19 +140,19 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 ProductImage(
                                   name: 'Herbicide',
-                                  price: '276',
+                                  price: 276,
                                   productImageNumber: 4,
                                   userId: userId,
                                 ),
                                 ProductImage(
                                   name: 'N53 Onion Seed',
-                                  price: '861',
+                                  price: 861,
                                   productImageNumber: 5,
                                   userId: userId,
                                 ),
                                 ProductImage(
                                   name: 'Spiced Milk',
-                                  price: '58',
+                                  price: 58,
                                   productImageNumber: 6,
                                   userId: userId,
                                 ),
@@ -182,7 +182,7 @@ class ProductImage extends StatelessWidget {
   });
 
   final String name;
-  final String price;
+  final int price;
   final int productImageNumber;
   final String userId;
 
@@ -261,7 +261,7 @@ class ReusedCircleAvatar extends StatelessWidget {
 
 class ReusedImageContainer extends StatelessWidget {
   final int imageNumber;
-  final String price;
+  final int price;
   final String imageName;
   final String userId;
 

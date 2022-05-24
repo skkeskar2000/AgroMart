@@ -6,7 +6,7 @@ class OrderImage extends StatelessWidget {
   OrderImage({required this.name, required this.price, required this.productImageNumber, required this.userId});
 
   final String name;
-  final String price;
+  final int price;
   final int productImageNumber;
   final String userId;
 

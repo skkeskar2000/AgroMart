@@ -15,7 +15,7 @@ class OrderScreen extends StatelessWidget {
       required this.userId})
       : super(key: key);
   final int imageNumber;
-  final String price;
+  final int price;
   final String imageName;
   final String userId;
 
@@ -54,7 +54,7 @@ class OrderScreen extends StatelessWidget {
                     builder: (context) => OrderPlacedScreen(
                           productImageNumber: imageNumber.toString(),
                           userId: userId,
-                          productQuantity: "1",
+                          productQuantity: 1,
                           productPrice: price,
                           productName: imageName,
                         )),
@@ -111,7 +111,7 @@ class OrderScreen extends StatelessWidget {
     OrderEntity order = OrderEntity(
       productName: imageName,
       productPrice: price,
-      productQuantity: "1",
+      productQuantity: 1,
       productImageNumber: imageNumber.toString(),
       userId: userId,
     );
