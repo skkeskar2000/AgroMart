@@ -2,7 +2,7 @@ import 'package:agro_mart/features/presentation/pages/home_page.dart';
 import 'package:agro_mart/features/presentation/screen/Signup/components/social_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import '../../../../data/remote_data_function.dart';
+import '../../../../data/remote_user_data_function.dart';
 import '../../../../domain/entities/user_entity.dart';
 import '../../../widgets/already_have_an_account_check.dart';
 import '../../../widgets/round_password_field.dart';
@@ -19,7 +19,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  late String email,password,passwordVerify,name,phoneNo;
+  late String email,password,passwordVerify,name,phoneNo,address;
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +63,12 @@ class _BodyState extends State<Body> {
                 hintText: "Enter Your Phone Number",
                 onChanged: (value) {
                   phoneNo = value;
+                },
+              ),
+              RoundedInputField(
+                hintText: "Enter Your Address",
+                onChanged: (value) {
+                  address = value;
                 },
               ),
               RoundedButton(
@@ -109,7 +115,7 @@ class _BodyState extends State<Body> {
   }
 
   void _isSignUp() async{
-    UserEntity user = await signIn(email, password,passwordVerify,name,phoneNo);
+    UserEntity user = await signIn(email, password,passwordVerify,name,phoneNo,address);
     print(user.name);
     if(user.id != null && user.gmail == email){
       navigateHomeScreen(user.id!,user.name,user.gmail);

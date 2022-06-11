@@ -2,6 +2,8 @@ import 'dart:convert';
 import '../domain/entities/order_entity.dart';
 import 'package:http/http.dart' as http;
 
+
+//Add To cart API
 Future<bool> addedToCart (OrderEntity order)async{
   try{
     final orderData = jsonEncode({
@@ -29,6 +31,7 @@ Future<bool> addedToCart (OrderEntity order)async{
   }
 }
 
+// Get All Cart API
 Future<List<dynamic>> getAllCart(String userId)async{
   try{
     final params = {
@@ -50,6 +53,7 @@ Future<List<dynamic>> getAllCart(String userId)async{
   }
 }
 
+//Delete Cart API
 Future<dynamic>deleteCartItem(String userId,String productName)async {
   try{
 

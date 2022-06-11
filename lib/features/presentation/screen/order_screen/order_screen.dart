@@ -81,7 +81,9 @@ class OrderScreen extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: _addToCart,
+            onTap: (){
+              _addToCart(context);
+            },
             child: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 35, vertical: 0),
               child: Card(
@@ -107,7 +109,7 @@ class OrderScreen extends StatelessWidget {
     );
   }
 
-  void _addToCart() async {
+  void _addToCart(BuildContext context) async {
     OrderEntity order = OrderEntity(
       productName: imageName,
       productPrice: price,
@@ -126,6 +128,9 @@ class OrderScreen extends StatelessWidget {
             backgroundColor: Colors.blue,
             textColor: Colors.white,
             fontSize: 16.0);
+      });
+      Future.delayed(const Duration(seconds: 1),(){
+        Navigator.pop(context);
       });
     } else {
       Future.delayed(const Duration(seconds: 0), () {

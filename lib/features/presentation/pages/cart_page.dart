@@ -44,7 +44,7 @@ class _CartPageState extends State<CartPage> {
                 children: [
                   const Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: Text('Rs 1,54,932'),
+                    child: Text('Rs 1200'),
                   ),
                   Expanded(child: Container()),
                   const Card(

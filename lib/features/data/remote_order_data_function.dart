@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../domain/entities/order_entity.dart';
 
+//Order Conformation Api
 Future<bool> orderPlaced (OrderEntity order)async{
 
   try{
@@ -31,6 +32,8 @@ Future<bool> orderPlaced (OrderEntity order)async{
   }
 }
 
+
+//Get All Order API
 Future<List<dynamic>> getAllOrder(String userId)async{
   try{
       final params = {
